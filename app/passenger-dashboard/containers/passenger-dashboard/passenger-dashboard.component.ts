@@ -32,13 +32,13 @@ export class PassengerDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.passengerService
       .getPassengers()
-      .then((data: Array<Passenger>) => this.passengers = data);
+      .subscribe((data: Array<Passenger>) => this.passengers = data);
   }
 
   handleEdit(event: Passenger) {
     this.passengerService
       .updatePassenger(event)
-      .then((data: Passenger) => {
+      .subscribe((data: Passenger) => {
         this.passengers = this.passengers.map((passenger: Passenger) => {
           if (passenger.id === event.id) {
             passenger = Object.assign({}, passenger, event); // object assign merges
@@ -52,7 +52,7 @@ export class PassengerDashboardComponent implements OnInit {
   handleRemove(event: Passenger) {
     this.passengerService
       .removePassenger(event)
-      .then((data: Passenger) => {
+      .subscribe((data: Passenger) => {
         this.passengers = this.passengers.filter((passenger: Passenger) => {
           return passenger.id !== event.id;
         });
