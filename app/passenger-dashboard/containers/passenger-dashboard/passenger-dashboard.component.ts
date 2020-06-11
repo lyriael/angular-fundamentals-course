@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Passenger} from "../../models/passenger.interface";
+import {PassengerDashboardService} from "../../passenger-dashboard.service";
 
 @Component({
   selector: 'passenger-dashboard',
@@ -12,7 +13,7 @@ import {Passenger} from "../../models/passenger.interface";
       </passenger-count>
       <div *ngFor="let passenger of passengers;">
         {{ passenger.fullname }}
-      </div> 
+      </div>
       <passenger-detail
       *ngFor="let passenger of passengers;"
       [detail]="passenger"
@@ -25,42 +26,11 @@ import {Passenger} from "../../models/passenger.interface";
 })
 export class PassengerDashboardComponent implements OnInit {
   passengers: Passenger[] = [];
-  constructor() {}
+
+  constructor(private passengerService: PassengerDashboardService) {}
+
   ngOnInit(): void {
-    console.log('ngOnInit');
-    this.passengers = [
-      {
-        id: 1,
-        fullname: 'Stephen',
-        checkedIn: true,
-        checkInDate: 1490742000000,
-        children: null,
-      }, {
-        id: 2,
-        fullname:  'Rose',
-        checkedIn: false,
-        checkInDate: null,
-        children: [{name: 'Ted', age: 12}, {name: 'Mug', age: 17}],
-      }, {
-        id: 3,
-        fullname: 'James',
-        checkedIn: true,
-        checkInDate: 1490742000000,
-        children: null,
-      }, {
-        id: 4,
-        fullname: 'Louise',
-        checkedIn: true,
-        checkInDate: 1490742000000,
-        children: [{name: 'Funa', age: 12}, {name: 'Marc', age: 17}],
-      }, {
-        id: 5,
-        fullname: 'Caith',
-        checkedIn: false,
-        checkInDate: null,
-        children: null,
-      },
-    ]
+    this.passengers = this.passengerService.getPassengers();
   }
 
   handleEdit(event: Passenger) {
