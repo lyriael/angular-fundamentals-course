@@ -18,7 +18,7 @@ interface Nav {
           routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: item.exact}"
         >
-          Home
+          {{ item.name }}
         </a>
         <router-outlet></router-outlet>
       </nav>
@@ -30,6 +30,11 @@ export class AppComponent {
     {
       link: '/',
       name: 'Home',
+      exact: true
+    },
+    {
+      link: '/passengers',
+      name: 'Passengers',
       exact: true
     },
     {
