@@ -25,6 +25,7 @@ const routes: Routes = [
     BrowserModule,
     CommonModule,
     RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes, { useHash: true }), // use Hash in URL
     // Custom Modules
     PassengerDashboardModule
   ],
