@@ -5,13 +5,22 @@ import {Component} from '@angular/core'
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      <a routerLink="/">
-        Home
-      </a>
-      <a routerLink="/oops">
-        404
-      </a>
-      <router-outlet></router-outlet>
+      <nav>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+        >
+          Home
+        </a>
+        <a
+          routerLink="/oops"
+          routerLinkActive="active"
+        >
+          404
+        </a>
+        <router-outlet></router-outlet>
+      </nav>
     </div>
   `
 })
