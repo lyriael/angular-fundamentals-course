@@ -5,14 +5,23 @@ import {CommonModule} from "@angular/common";
 import {PassengerDashboardModule} from "./passenger-dashboard/passenger-dashboard.module";
 
 import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {HomeComponent} from "./home.component";
+
+const routes: Routes = [
+  {path: '', component: HomeComponent, pathMatch: 'full'}
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
   ],
   imports: [
     // Angular Modules
-    BrowserModule, CommonModule,
+    BrowserModule,
+    CommonModule,
+    RouterModule.forRoot(routes),
     // Custom Modules
     PassengerDashboardModule
   ],
