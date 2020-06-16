@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {PassengerDashboardService} from "../../passenger-dashboard.service";
 import {Passenger} from "../../models/passenger.interface";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'passenger-viewer',
@@ -17,12 +18,16 @@ import {Passenger} from "../../models/passenger.interface";
 })
 export class PassengerViewerComponent implements OnInit {
   passenger: Passenger;
-  constructor(private passengerService: PassengerDashboardService) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private passengerService: PassengerDashboardService
+  ) {
   }
 
   ngOnInit() {
-    this.passengerService
-      .getPassenger(1)
+    this.route.params
+      .switchMap((data: Passenger) => this.passengerService.getPassenger(data.id))
       .subscribe((data: Passenger) => this.passenger = data);
   }
 
