@@ -8,6 +8,9 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
   styleUrls: ['passenger-viewer.component.scss'],
   template: `
     <div>
+      <button (click)="goBack()">
+        &lsaquo; Go back
+      </button>
         <passenger-form
           [detail]="passenger"
           (update)="onUpdatePassenger($event)"
@@ -35,5 +38,9 @@ export class PassengerViewerComponent implements OnInit {
     this.passengerService
       .updatePassenger(event)
       .subscribe((data: Passenger) => this.passenger = Object.assign({}, this.passenger, data));
+  }
+
+  goBack() {
+    this.router.navigate(['/passengers'])
   }
 }
